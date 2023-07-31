@@ -1,0 +1,25 @@
+package Library;
+
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class JdbcSQLServerConnection {
+
+    public static Connection dbclass() {
+ 
+    	Connection con = null;
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			con = DriverManager.getConnection(
+					"LAPTOP-42FS4MQ5\\SQLEXPRESS;databaseName=Books;user=sa;password=!QAZ2wsx;");
+			System.out.println("connected");
+		} catch (Exception e) {
+
+			System.out.println(e);
+		}
+		return con;
+    }
+}
+

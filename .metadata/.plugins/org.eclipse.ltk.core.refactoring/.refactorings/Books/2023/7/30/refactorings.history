@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;Library.AddBook.java&apos; to &apos;BookImp.java&apos;&#x0D;&#x0A;- Original project: &apos;Books&apos;&#x0D;&#x0A;- Original element: &apos;Library.AddBook.java&apos;&#x0D;&#x0A;- Renamed element: &apos;Library.BookImp.java&apos;" description="Rename compilation unit &apos;AddBook.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;Library{AddBook.java" name="BookImp.java" references="false" stamp="1690615501744" version="1.0"/>
+</session>

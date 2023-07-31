@@ -1,0 +1,81 @@
+package Library;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+ class BookActions implements Books{
+	public void  AddBook() {
+		System.out.println("Please enter the books name :");
+		Scanner sc=new Scanner(System.in);
+		String bookName=sc.next();
+		System.out.println("Please enter the Author  name :");
+		Scanner scAuthor=new Scanner(System.in);
+		String AuthorName=sc.next();
+		System.out.println("Please enter the Price :");
+		Scanner scPrice=new Scanner(System.in);
+		int Price=sc.nextInt();
+		System.out.println("Please enter the Bookid :");
+		Scanner scBid=new Scanner(System.in);
+		int Bookid=sc.nextInt();
+		JdbcSQLServerConnection Bobj=new JdbcSQLServerConnection();
+		Bobj.AddBname(bookName,AuthorName,Price,Bookid);	
+		System.out.println("Book added successfully");	
+		
+	
+		
+	}
+
+	
+	  public void ViewBook(){ 
+		  
+	  System.out.println(" The available list of all books is  :");
+	  List<String[]> Booklist=JdbcSQLServerConnection.ViewBname()	; 
+		
+		  for(String[] book:Booklist) 
+		  { 
+			 //System.out.println(book);
+			  System.out.println(Arrays.toString(book));
+			  
+		  }
+	  
+	}
+	  public String SearchBook(){  
+		  
+		  System.out.println(" enter the name to be search  :");
+		  Scanner sc=new Scanner(System.in);
+		  String bookName=sc.next();
+		  JdbcSQLServerConnection Booklist=new JdbcSQLServerConnection(); 
+		  String Bname1 =Booklist.SearchBname(bookName);
+		 	  
+		  String Avalilability=null;
+		  if (Bname1==bookName) {
+			  Avalilability="yes";
+			  System.out.println(" the book is avaiilable :");
+			  
+		  }else {
+			  Avalilability="no";
+			  System.out.println(" the book is avaiilable :");
+		  }
+		 
+		  return Avalilability ;
+		}
+	  public void DeleteBook() {
+		  System.out.println(" enter the name to be delected :");
+		  Scanner sc=new Scanner(System.in);
+		  String bookName=sc.next();
+		  JdbcSQLServerConnection Booklist=new JdbcSQLServerConnection(); 
+				  Booklist.DeleteBname(bookName);
+	  }
+	  public void UpdateBook() {
+		  System.out.println(" enter the name to be Updated :");
+		  Scanner sc1=new Scanner(System.in);
+		  String bookName1=sc1.next();
+		  System.out.println(" enter the new name :");
+		  Scanner sc=new Scanner(System.in);
+		  String bookName=sc.next();
+		  JdbcSQLServerConnection Booklist=new JdbcSQLServerConnection(); 
+		  Booklist.UpdateBname(bookName1,bookName);
+	  }
+}

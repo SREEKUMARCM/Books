@@ -1,0 +1,13 @@
+package Library;
+
+import java.util.List;
+
+interface Books{
+	void AddBook();
+	List<String> ViewBook();
+	String SearchBook();
+	void DeleteBook();
+	void UpdateBook();
+	
+	
+}

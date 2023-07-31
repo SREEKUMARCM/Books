@@ -1,0 +1,37 @@
+package Library;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+ class BookActions implements Books{
+	public String  AddBook() {
+		System.out.println("Please add the books in to the list");
+		Scanner sc=new Scanner(System.in);
+		String bookName=sc.next();
+		/*
+		 * List<String> Booklist = new ArrayList<>(); Booklist.add(bookName);
+		 * Booklist.add("alcamist"); Booklist.add("richdadpoordad");
+		 * System.out.println("the list is "+Booklist);
+		 */
+		JdbcSQLServerConnection Bobj=new JdbcSQLServerConnection();
+		Bobj.AddBname(bookName);	
+		System.out.println("Book added successfully");	
+		return bookName;
+	
+		
+	}
+
+	public void ViewBook(List<String> Booklist) {
+		try {
+		System.out.println(" The available list of all books is  :");
+		for(String book:Booklist) {
+			 System.out.println(book);
+		}
+		}catch(NullPointerException e) {
+			System.out.println("the list is empty ");	
+		}
+	}
+
+	
+}

@@ -1,0 +1,28 @@
+package Library;
+
+import java.util.Scanner;
+
+public class MainClass {
+	public static void main(String args[]) {
+		System.out.println("1.AddBook");
+		System.out.println("2.ViewBook");
+		System.out.println("3.SearchBook");
+		System.out.println("4.DeleteBook");
+		System.out.println("5.UpdateBook");
+		System.out.println("6.Exit");
+		System.out.println("Please select your choice");
+		Scanner sc=new Scanner(System.in);
+		int option=sc.nextInt();
+		switch(option) {
+		  case 1:
+			Books obj=new BookActions();
+				obj.AddBook();
+		    break;
+		  case 2:
+				Books objview=new BookActions();
+					objview.ViewBook();
+			    break;
+		}
+		
+	}
+}

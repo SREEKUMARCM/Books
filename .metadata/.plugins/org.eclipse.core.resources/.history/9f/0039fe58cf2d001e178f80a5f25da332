@@ -1,0 +1,12 @@
+package Library;
+
+import java.util.Scanner;
+
+class BookActions implements Books{
+	public void AddBook() {
+		System.out.println("Please add the books in to the list");
+		Scanner sc=new Scanner(System.in);
+		String bookName=sc.next();
+		System.out.println("Book name is "+bookName);
+	}
+}

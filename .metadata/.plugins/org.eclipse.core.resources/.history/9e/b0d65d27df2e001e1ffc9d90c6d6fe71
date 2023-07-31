@@ -1,0 +1,26 @@
+package Library;
+
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class JdbcSQLServerConnection {
+
+    public static Connection dbclass() {
+    	String dbURL = "http:sqlserver://localhost:1433";
+        String username = "sa";
+        String password = "!QAZ2wsx";
+    	Connection con = null;
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			con = DriverManager.getConnection(dbURL,username,password);
+			System.out.println("connected");
+		} catch (Exception e) {
+
+			System.out.println(e);
+		}
+		return con;
+    }
+}
+

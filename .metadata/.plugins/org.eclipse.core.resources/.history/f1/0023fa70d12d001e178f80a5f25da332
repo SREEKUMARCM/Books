@@ -1,0 +1,14 @@
+package Library;
+
+public class MainClass {
+	public static void main(String args[]) {
+		System.out.println("AddBook");
+		System.out.println("ViewBook");
+		System.out.println("SearchBook");
+		System.out.println("DeleteBook");
+		System.out.println("UpdateBook");
+		System.out.println("Exit");
+		Books obj=new BookActions();
+		obj.AddBook();
+	}
+}

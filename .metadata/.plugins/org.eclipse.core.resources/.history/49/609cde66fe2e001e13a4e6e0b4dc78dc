@@ -1,0 +1,35 @@
+package Library;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+ class BookActions implements Books{
+	public String  AddBook() {
+		System.out.println("Please add the books in to the list");
+		Scanner sc=new Scanner(System.in);
+		String bookName=sc.next();
+		JdbcSQLServerConnection Bobj=new JdbcSQLServerConnection();
+		Bobj.AddBname(bookName);	
+		System.out.println("Book added successfully");	
+		return bookName;
+	
+		
+	}
+
+	
+	  public List<String> ViewBook(){ 
+		  
+	  System.out.println(" The available list of all books is  :");
+	  List<String> Booklist=new  ArrayList<>();
+	  Booklist.ViewBname();
+	  Booklist.add("hgasdf");
+	  for(String book:Booklist)  {
+		  System.out.println(book);
+		  } 
+	 	  
+		  
+	 
+	  return Booklist;
+	}
+}

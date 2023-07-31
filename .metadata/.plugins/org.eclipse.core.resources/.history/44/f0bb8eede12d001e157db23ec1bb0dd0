@@ -1,0 +1,6 @@
+package Library;
+
+interface Books{
+	static AddBook();
+	void ViewBook();
+}

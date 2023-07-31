@@ -1,0 +1,22 @@
+package Library;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+abstract class BookActions implements Books{
+	public void AddBook(List<String> Booklist) {
+		System.out.println("Please add the books in to the list");
+		Scanner sc=new Scanner(System.in);
+		String bookName=sc.next();
+		//List<String> Booklist = new ArrayList<>(); 
+		Booklist.add(bookName);
+		System.out.println("the list is "+Booklist);
+	}
+	public void ViewBook(List<String> Booklist) {
+		System.out.println(" The available list of all books is  :");
+		for(String Num:Booklist) {
+			  System.out.println(Num);
+		}
+	}
+}

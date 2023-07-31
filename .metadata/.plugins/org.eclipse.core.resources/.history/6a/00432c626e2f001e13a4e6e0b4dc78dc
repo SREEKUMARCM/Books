@@ -1,0 +1,148 @@
+package Library;
+
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.*;
+
+public class JdbcSQLServerConnection {
+
+    public static Connection dbclass() {
+    	String dbURL = "jdbc:mysql://localhost:3306/Books";
+        String username = "root";
+        String password = "passOMKV4545";
+    	Connection con = null;
+		try{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection(dbURL,username,password);
+			Statement statement=con.createStatement();
+			ResultSet resultSet=statement.executeQuery("select * from BookData");
+			while(resultSet.next()) {
+				System.out.println(resultSet.getNString(1));
+			}
+			//con.close();
+			
+		} catch (Exception e) {
+
+			System.out.println(e);
+		}
+		return con;
+    }
+    public static void AddBname(String Booklist,String authorname,int price,int bookid) {
+    	try(Connection con = dbclass()) {
+    		String Bname=Booklist;
+    		String  AuthorName=authorname;
+    		int Price=price;
+    		int Bid=bookid;
+    		  String insertQuery = "INSERT INTO BookData (Bname,Authorname,Price,Bid) VALUES (?,?,?,?)";
+              PreparedStatement statement = con.prepareStatement(insertQuery);
+              statement.setString(1, Bname);
+              statement.setString(2, AuthorName);
+              statement.setFloat(3, Price);
+              statement.setInt(4,Bid);
+              int rowsInserted = statement.executeUpdate();
+              if (rowsInserted > 0) {
+                  System.out.println("Data inserted successfully.");
+              } else {
+                  System.out.println("Data insertion failed.");
+              }
+    	}catch(SQLException e) {
+            e.printStackTrace();
+        }
+		
+    	
+    }
+    
+    public static List<String> ViewBname(){
+    	 List<String> Booklist = new ArrayList<>();
+    	try(Connection con = dbclass()){
+    	  
+    	   String sqlQuery = "SELECT * FROM BookData";
+    	   PreparedStatement statement = con.prepareStatement(sqlQuery);
+    	   ResultSet resultSet = statement.executeQuery();
+           while (resultSet.next()) {
+               String data = resultSet.getString("Bname"); // Replace "column_name" with your column name
+              
+               Booklist.add(data);
+           }
+          
+          
+    	} catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    	 return Booklist;
+    }
+    public static String SearchBname(String BookName) {
+    	 String Booklist = null;
+    	try(Connection con = dbclass()) {
+    		String Bname=BookName;
+    		  String sqlQuery = "SELECT Bname FROM BookData where Bname= (?)";
+    		  PreparedStatement statement = con.prepareStatement(sqlQuery);
+    		  statement.setString(1, Bname);
+       	   ResultSet resultSet = statement.executeQuery();
+              while (resultSet.next()) {
+                  String data = resultSet.getString("Bname"); // Replace "column_name" with your column name
+                  Booklist=data;
+              }
+             
+             
+       	} catch (SQLException e) {
+               e.printStackTrace();
+           }
+		
+    	return Booklist;
+    }
+    public static void DeleteBname(String Booklist) {
+    	try(Connection con = dbclass()) {
+    		String Bname=Booklist;
+    		  String insertQuery = "delete from BookData where (Bname) =(?)";
+              PreparedStatement statement = con.prepareStatement(insertQuery);
+              statement.setString(1, Bname);
+              int rowsInserted = statement.executeUpdate();
+              if (rowsInserted > 0) {
+                  System.out.println("Data Deleted successfully.");
+              } else {
+                  System.out.println("Data Deletion failed failed.");
+              }
+    	}catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    	public static void UpdateBname(String Booklist1,String Booklist) {
+        	try(Connection con = dbclass()) {
+        	String Bname1=Booklist1;
+        		String Bname=Booklist;
+        		
+        		  String insertQuery = "UPDATE BookData SET Bname = (?) WHERE Bname =(?) ;";
+                  PreparedStatement statement = con.prepareStatement(insertQuery);
+                  statement.setString(1, Bname);
+                  statement.setString(2, Bname1);
+                  int rowsInserted = statement.executeUpdate();
+                  if (rowsInserted > 0) {
+                      System.out.println("Data updated successfully.");
+                  } else {
+                      System.out.println("Data updation failed.");
+                  }
+        	}catch(SQLException e) {
+                e.printStackTrace();
+            }
+	
+    }
+    
+    
+    
+    
+   
+    
+    
+    
+    
+
+}
+

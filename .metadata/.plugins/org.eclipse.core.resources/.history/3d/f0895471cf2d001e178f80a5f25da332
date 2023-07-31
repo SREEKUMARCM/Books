@@ -1,0 +1,15 @@
+package Library;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class BookActions implements Books{
+	public void AddBook() {
+		System.out.println("Please add the books in to the list");
+		Scanner sc=new Scanner(System.in);
+		String bookName=sc.next();
+		List<String> Booklist = new ArrayList<>(); 
+		Booklist.add("gasakinte ithihasam");
+	}
+}

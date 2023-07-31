@@ -1,0 +1,8 @@
+package Library;
+
+import java.util.List;
+
+interface Books{
+	String AddBook();
+	void ViewBook(List<String> Booklist);
+}
