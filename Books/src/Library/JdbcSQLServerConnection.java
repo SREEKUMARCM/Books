@@ -58,19 +58,20 @@ public class JdbcSQLServerConnection {
     	
     }
     
-    public static List<String[]> ViewBname(){
-    	 List<String[]> Booklist = new ArrayList<>();
+    public static List<Books> ViewBname(){
+    	 List<Books> Booklist = new ArrayList<>();
     	try(Connection con = dbclass()){
     	  
     	   String sqlQuery = "SELECT * FROM BookData";
     	   PreparedStatement statement = con.prepareStatement(sqlQuery);
     	   ResultSet resultSet = statement.executeQuery();
            while (resultSet.next()) {
-        	   String[] data = new String[4];
-               data[0] = resultSet.getString("Bname");
-               data[1] = resultSet.getString("Authorname");
-               data[2] = resultSet.getString("Price");
-               data[3] = resultSet.getString("Bid");
+        	  // String[] data = new String[4];
+        	   Books data=new Books();
+        	   data.setBookName( resultSet.getString("Bname"));
+        	   data.setAuthorName( resultSet.getString("Authorname"));
+        	   data.setPrice(resultSet.getFloat("Price"));
+        	   data.setBookid(resultSet.getInt("Bid"));
                Booklist.add(data);
               
            }
